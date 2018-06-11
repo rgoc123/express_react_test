@@ -1,7 +1,7 @@
 //define the initial state
 const initialState = {
-  status: "loading",
-  streams: [0,1,2],
+  status: "",
+  streams: [],
   error: ""
 }
 
@@ -15,7 +15,8 @@ function ApiApp(state = initialState, action) {
       return requested
     case 'FETCH_SUCCESS':
       const successful = Object.assign({}, state, {
-        status: action.status
+        status: action.status,
+        streams: action.streams
       })
       return successful
     case 'FETCH_FAILURE':

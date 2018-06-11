@@ -4,6 +4,7 @@ import { getState } from 'redux';
 import Loader from '../presentationals/Loader';
 import StreamCard from  '../presentationals/StreamCard';
 import Alert from  '../presentationals/Alert';
+import RequestApi from '../../actions/RequestApi';
 
 
 //Provider/Container React Component
@@ -11,6 +12,7 @@ class Streams extends React.Component {
 
   componentWillMount () {
     this.props.store.subscribe(this.forceUpdate.bind(this));
+    this.props.store.dispatch(RequestApi());
   }
 
   render() {
