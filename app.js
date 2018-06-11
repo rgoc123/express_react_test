@@ -40,9 +40,9 @@ app.get('/api/streams', function(req, res) {
 
 app.post('/api/streams', function(req, res) {
   var stream = new Streams();
-  stream.image = "http://bit.ly/2sCaKaY";
-  stream.name = "Test_Stream";
-  stream.viewers = 30;
+  stream.image = req.param('image');
+  stream.name = req.param('name');
+  stream.viewers = req.param('viewers');
   stream.save(function(err) {
       if (err) {
         res.send(err);
