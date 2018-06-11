@@ -6,15 +6,50 @@ var logger = require('morgan');
 
 var app = express();
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname, 'public')));
+
+app.set('view engine', 'html');
+
+// API Service
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/ReactReduxExpressMongo')
+  .then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));
+
+var Streams = require('./models/StreamModel.js');
+
+var router = express.Router();
+// app.use('/api', router);
+
+app.post('/api', function(req, res){
+  res.json({message: "Message from /api"});
+});
+
+app.get('/api/streams', function(req, res) {
+  Streams.find(function(err, streams) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(streams);
+  });
+});
+
+app.post('/api/streams', function(req, res) {
+  var stream = new Streams();
+  stream.image = "http://bit.ly/2sCaKaY";
+  stream.name = "Test_Stream";
+  stream.viewers = 30;
+  stream.save(function(err) {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ message: 'Stream created. Check Robo 3T!' });
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
