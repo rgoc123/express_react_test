@@ -25345,7 +25345,10 @@ var Streams = function (_React$Component) {
       var status = stateProps.status;
       var streamCardItems = stateProps.streams.map(function (stream) {
         return _react2.default.createElement(_StreamCard2.default, {
-          key: stream
+          key: stream._id,
+          image: stream.image,
+          name: stream.name,
+          viewers: stream.viewers
         });
       });
       var error = stateProps.error;
@@ -25493,12 +25496,21 @@ var StreamCard = function (_React$Component) {
       return _react2.default.createElement(
         "div",
         { className: "stream-cards" },
+        _react2.default.createElement("img", {
+          className: "stream-cover",
+          src: this.props.image
+        }),
         _react2.default.createElement(
-          "a",
-          null,
-          _react2.default.createElement("img", {
-            className: "stream-cover"
-          })
+          "h4",
+          { className: "stream-name" },
+          "Stream: ",
+          this.props.name
+        ),
+        _react2.default.createElement(
+          "h4",
+          { className: "stream-viewers" },
+          "Viewers: ",
+          this.props.viewers
         )
       );
     }

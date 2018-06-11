@@ -20,7 +20,10 @@ class Streams extends React.Component {
     const status = stateProps.status;
     const streamCardItems = stateProps.streams.map((stream) =>
       <StreamCard
-        key = { stream }
+      key = { stream._id }
+      image = { stream.image }
+      name = { stream.name }
+      viewers = { stream.viewers }
       />
     );
     const error = stateProps.error;

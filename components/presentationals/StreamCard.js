@@ -5,14 +5,15 @@ class StreamCard extends React.Component {
   render() {
     return (
       <div className="stream-cards">
-        <a>
-          <img
-            className="stream-cover"
-          />
-        </a>
+        <img
+          className="stream-cover"
+          src={this.props.image}
+        />
+        <h4 className="stream-name">Stream: {this.props.name}</h4>
+        <h4 className="stream-viewers">Viewers: {this.props.viewers}</h4>
       </div>
     )
   }
 }
 
-export default StreamCard
+export default StreamCard;

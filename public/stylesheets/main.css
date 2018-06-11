@@ -126,7 +126,7 @@ clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   justify-content: center;
 }
 
-.stream-cover {
+.stream-cover, .stream-name, .stream-viewers {
   position: relative;
   margin: 20px;
 }
